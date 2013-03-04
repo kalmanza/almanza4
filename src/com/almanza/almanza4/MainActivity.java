@@ -13,11 +13,18 @@ public class MainActivity extends Activity {
 	static final String WEIGHT = "weight";
 	static final String HEIGHT = "height";
 	static final String BMI = "bmi";
+	Button btn_calculate;
+	EditText txt_bmi;
+	EditText txt_height;
+	EditText txt_weight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    	Button btn_calculate = (Button) findViewById(R.id.btn_calculate);
+    	btn_calculate = (Button) findViewById(R.id.btn_calculate);
+    	txt_bmi = (EditText) findViewById(R.id.txt_bmi);
+    	txt_height = (EditText) findViewById(R.id.txt_height);
+    	txt_weight = (EditText) findViewById(R.id.txt_weight);
         OnClickListener listener = new OnClickListener() {
 
 			@Override
@@ -26,16 +33,13 @@ public class MainActivity extends Activity {
 			}
 		};
 		btn_calculate.setOnClickListener(listener);
-		EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
-    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
-    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
-    	if(savedInstanceState != null){
+		if(savedInstanceState != null){
     		if(savedInstanceState.containsKey(BMI))
-    			txt_bmi.setText(savedInstanceState.get(BMI).toString());
+    			txt_bmi.setText(savedInstanceState.getCharSequence(BMI));
     		if(savedInstanceState.containsKey(HEIGHT))
-    			txt_height.setText(savedInstanceState.get(HEIGHT).toString());
+    			txt_height.setText(savedInstanceState.getCharSequence(HEIGHT));
 			if (savedInstanceState.containsKey(WEIGHT))
-				txt_weight.setText(savedInstanceState.get(WEIGHT).toString());
+				txt_weight.setText(savedInstanceState.getCharSequence(WEIGHT));
     	}
     }
     
@@ -48,35 +52,26 @@ public class MainActivity extends Activity {
     
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState){
-    	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
-    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
-    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
-    	savedInstanceState.putString(HEIGHT,txt_height.toString());
-    	savedInstanceState.putString(WEIGHT,txt_weight.toString());
-    	savedInstanceState.putString(BMI,txt_bmi.toString());
+    	savedInstanceState.putCharSequence(HEIGHT, txt_height.getText());
+    	savedInstanceState.putCharSequence(WEIGHT, txt_weight.getText());
+    	savedInstanceState.putCharSequence(BMI, txt_bmi.getText());
     	super.onSaveInstanceState(savedInstanceState);
     }
     
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
     	super.onRestoreInstanceState(savedInstanceState);
-    	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
-    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
-    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
     	if(savedInstanceState != null){
     		if(savedInstanceState.containsKey(BMI))
-    			txt_bmi.setText("123132");
+    			txt_bmi.setText(savedInstanceState.getCharSequence(BMI));
     		if(savedInstanceState.containsKey(HEIGHT))
-    			txt_height.setText(savedInstanceState.get(HEIGHT).toString());
+    			txt_height.setText(savedInstanceState.getCharSequence(HEIGHT));
 			if (savedInstanceState.containsKey(WEIGHT))
-				txt_weight.setText(savedInstanceState.get(WEIGHT).toString());
+				txt_weight.setText(savedInstanceState.getCharSequence(WEIGHT));
     	}
     }
     
     private void calculateBMI(){
-    	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
-    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
-    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
     	double height, weight, bmi;
     	bmi = 0;
     	try{
