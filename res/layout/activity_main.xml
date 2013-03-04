@@ -123,7 +123,7 @@
             android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/txt_bmi"
@@ -134,7 +134,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:inputType="number"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </TableRow>
 
@@ -157,7 +157,7 @@
             android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </TableRow>
 

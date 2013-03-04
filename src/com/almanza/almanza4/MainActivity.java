@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	
+	static final String WEIGHT = "weight";
+	static final String HEIGHT = "height";
+	static final String BMI = "bmi";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +26,19 @@ public class MainActivity extends Activity {
 			}
 		};
 		btn_calculate.setOnClickListener(listener);
+		EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
+    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
+    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
+    	if(savedInstanceState != null){
+    		if(savedInstanceState.containsKey(BMI))
+    			txt_bmi.setText(savedInstanceState.get(BMI).toString());
+    		if(savedInstanceState.containsKey(HEIGHT))
+    			txt_height.setText(savedInstanceState.get(HEIGHT).toString());
+			if (savedInstanceState.containsKey(WEIGHT))
+				txt_weight.setText(savedInstanceState.get(WEIGHT).toString());
+    	}
     }
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -34,12 +46,37 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState){
+    	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
+    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
+    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
+    	savedInstanceState.putString(HEIGHT,txt_height.toString());
+    	savedInstanceState.putString(WEIGHT,txt_weight.toString());
+    	savedInstanceState.putString(BMI,txt_bmi.toString());
+    	super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+    	super.onRestoreInstanceState(savedInstanceState);
+    	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
+    	EditText txt_height = (EditText) findViewById(R.id.txt_height);
+    	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
+    	if(savedInstanceState != null){
+    		if(savedInstanceState.containsKey(BMI))
+    			txt_bmi.setText("123132");
+    		if(savedInstanceState.containsKey(HEIGHT))
+    			txt_height.setText(savedInstanceState.get(HEIGHT).toString());
+			if (savedInstanceState.containsKey(WEIGHT))
+				txt_weight.setText(savedInstanceState.get(WEIGHT).toString());
+    	}
+    }
+    
     private void calculateBMI(){
     	EditText txt_bmi = (EditText) findViewById(R.id.txt_bmi);
     	EditText txt_height = (EditText) findViewById(R.id.txt_height);
     	EditText txt_weight = (EditText) findViewById(R.id.txt_weight);
-    	TextView lbl_result = (TextView) findViewById(R.id.lbl_result);
-    	TextView lbl_bmi_info = (TextView) findViewById(R.id.lbl_bmi_info);
     	double height, weight, bmi;
     	bmi = 0;
     	try{
@@ -61,9 +98,5 @@ public class MainActivity extends Activity {
     			Toast.makeText(this, getApplicationContext().getString(R.string.error_other), Toast.LENGTH_LONG).show();
     		}
     	}
-    	txt_bmi.setVisibility(View.VISIBLE);
-    	lbl_result.setVisibility(View.VISIBLE);
-    	lbl_bmi_info.setVisibility(View.VISIBLE);
-    	
     }
 }
