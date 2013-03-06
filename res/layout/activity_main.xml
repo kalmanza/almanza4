@@ -1,3 +1,12 @@
+<!-- 
+/* activity_main.xml
+ * Due: 3/6/13
+ * Author: Kevin Almanza
+ * Course: CSCI 3033
+ * Description: This file is the layout specification to be used in the main activity
+ */
+
+ -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -133,7 +142,7 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:visibility="visible" />
 
     </TableRow>

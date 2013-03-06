@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+/* File: strings.xml
+ * Due: 3/6/13
+ * Author: Kevin Almanza
+ * Course: CSCI 3033
+ * Description: This file contains all the strings used in the application
+ */
+ -->
 <resources>
 
     <string name="app_name">Almanza4</string>

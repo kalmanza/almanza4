@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+/* File: colors.xml
+ * Due: 3/6/13
+ * Author: Kevin Almanza
+ * Course: CSCI 3033
+ * Description: This file contains the color values for the application
+ */
+ -->
 <resources>
     <color name="main_background">#888888</color>
     <color name="text_color">#FFFFFF</color>
